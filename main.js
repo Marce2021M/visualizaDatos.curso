@@ -1,29 +1,40 @@
-let N=10;
-// let X=[];
-// let Y=[];
+// Get the canvas element
+var canvas = document.getElementById("myCanvas");
 
-// accedemos al doc
-var canvas1 = document.getElementById("thecanvas");
-var ctx = canvas1.getContext("2d");
+// Set the canvas size to full screen
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
+// Get the drawing context
+var ctx = canvas.getContext("2d");
 
-// Definimos el tamaño del canvasa
-let X = Math.random()*canvas1.width;
-let Y = Math.random()*canvas1.height;
+//Fill the canvas with dark gray:
+ctx.fillStyle = "#222";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// creamos objeto vectorial
+// ------------------------------------------------------------
+// Your drawing code goes here:
 
+//Let's create some synthetic data:
+let N = 10;
+let X = [];
+let Y = [];
+
+ctx.transform(1, 0, 0, -1, 0, canvas.height)
 ctx.fillStyle = "#FF00FF";
 ctx.strokeStyle = "#FFFFFF";
 ctx.lineWidth = 3;
 
-ctx.beginPath();
-ctx.moveTo(X,Y);
-ctx.arc(X,Y,100,Math.PI/4,Math.PI/2);
-ctx.closePath();
-ctx.fill();
-ctx.stroke();
-
+for (let i = 0; i < N; i++) {
+    X.push(Math.random())
+    Y.push(Math.random())
+    // Create a circle:
+    ctx.beginPath();
+    ctx.arc(X[i] * canvas.width, Y[i] * canvas.height, 10, 0, 2 * Math.PI)
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+}
 
 
 
